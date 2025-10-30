@@ -16,7 +16,28 @@ export const diceRolls =(rollsNumber)=>{
 
 export const checkScore = (diceRoll) => {
     let score = 0;
+    const counts = {}; 
     for (let i = 0; i < diceRoll.length; i++) {
+        const value = diceRoll[i];
+        counts[value] = (counts[value] || 0) + 1;
+    }
+    for (const val in counts) {
+        if (counts[val] === 5) {
+            score = 50;
+            return score;
+        }
+    }
+    if (counts[1] === 4) {
+        score = 35;
+        return score;
+    }
+    if (counts[1] === 3) {
+        score = 28;
+        return score;
+    }
+
+    for (let i = 0; i < diceRoll.length; i++) {
+
         score += diceRoll[i];
     }
     return score;

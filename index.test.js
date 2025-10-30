@@ -28,9 +28,10 @@ describe('diceGame',()=> {
         });
     });
     it.each([
-        {diceRoll: [1, 2, 3, 4, 5], expectedScore: 15},
-        {diceRoll: [3,5,8,6,4], expectedScore: 26},
-        {diceRoll: [3,1,4,7,5], expectedScore: 20}
+        {diceRoll: [5,1,3,4,2], expectedScore: 15},
+        {diceRoll: [5,1,4,7,5], expectedScore: 22},
+        {diceRoll: [5,1,1,1,1], expectedScore: 35},
+        {diceRoll: [3,3,3,3,3], expectedScore: 50},
     ])('should return $expectedScore for $diceRoll',({diceRoll, expectedScore})=> {
         const result = checkScore(diceRoll);
         expect(result).toBe(expectedScore);
