@@ -28,21 +28,23 @@ describe('diceGame',()=> {
         });
     });
     it.each([
-        {diceRoll: [5,1,3,4,2], expectedScore: 15},
-        {diceRoll: [5,1,4,7,5], expectedScore: 22},
+        {diceRoll: [5,1,3,4,4], expectedScore: 17},
+        {diceRoll: [5,1,5,7,5], expectedScore: 28},
         {diceRoll: [5,1,1,1,1], expectedScore: 35},
         {diceRoll: [3,3,3,3,3], expectedScore: 50},
+        {diceRoll: [6,2,6,2,6], expectedScore: 30},
+        {diceRoll: [5,3,1,2,4], expectedScore: 40},
     ])('should return $expectedScore for $diceRoll',({diceRoll, expectedScore})=> {
         const result = checkScore(diceRoll);
         expect(result).toBe(expectedScore);
     });
-    it('should return 61 for [[1,2,3,4,5],[3,5,8,6,4],[3,1,4,7,5]]',()=> {
+    it('should return 85 for [[4,3,4,1,4],[3,5,2,6,4],[4,1,5,3,4]]',()=> {
         const rolls = [
-            [1, 2, 3, 4, 5],
-            [3, 5, 8, 6, 4],
-            [3, 1, 4, 7, 5]
+            [4, 3, 4, 1, 4],
+            [3, 5, 2, 6, 4],
+            [4, 1, 5, 3, 4]
         ];
         const result = diceGame(rolls);
-        expect(result).toBe(61);
+        expect(result).toBe(85);
     });
 });

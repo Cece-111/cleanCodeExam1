@@ -15,29 +15,48 @@ export const diceRolls =(rollsNumber)=>{
 }
 
 export const checkScore = (diceRoll) => {
+    const VALEUR_BRELAN=28;
+    const VALEUR_CARRE=35;
+    const VALEUR_FULL=30;
+    const VALEUR_GRANDE_SUITE=40;
+    const VALEUR_YAMS=50;
+
     let score = 0;
     const counts = {}; 
     for (let i = 0; i < diceRoll.length; i++) {
         const value = diceRoll[i];
         counts[value] = (counts[value] || 0) + 1;
     }
-    for (const val in counts) {
-        if (counts[val] === 5) {
-            score = 50;
-            return score;
+
+    let maxCount = 0;
+    const occurrences = Object.values(counts);
+    for (let count of occurrences) { 
+        if (count > maxCount) maxCount = count;
+    }
+
+    if (maxCount === 5) {
+        return VALEUR_YAMS;
+    }
+
+    const uniqueValues = Object.keys(counts).map(Number);
+    if (uniqueValues.length === 5) {
+        const min = Math.min(...uniqueValues);
+        const max = Math.max(...uniqueValues);
+        if (max - min === 4) return VALEUR_GRANDE_SUITE;
+    }
+
+    if (maxCount === 4){
+        return VALEUR_CARRE;
+    }
+
+    if (maxCount === 3){
+        if (occurrences.includes(2)) {
+            return VALEUR_FULL;
         }
-    }
-    if (counts[1] === 4) {
-        score = 35;
-        return score;
-    }
-    if (counts[1] === 3) {
-        score = 28;
-        return score;
+        return VALEUR_BRELAN;
     }
 
     for (let i = 0; i < diceRoll.length; i++) {
-
         score += diceRoll[i];
     }
     return score;
