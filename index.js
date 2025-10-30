@@ -1,11 +1,27 @@
 export const roll5Dices = () => {
-    const listeDes = [];
+    const diceRoll = [];
     for (let i = 0; i < 5; i++) {
-        listeDes.push(Math.floor(Math.random() * 6) + 1);
+        diceRoll.push(Math.floor(Math.random() * 6) + 1);
     }
-    return listeDes;
+    return diceRoll;
 };
 
-export const diceGame=(input)=> {
+export const diceRolls =(rollsNumber)=>{
+    const diceRolls = [];
+    for (let i = 0; i < rollsNumber; i++) {
+        diceRolls.push(roll5Dices());
+    }
+    return diceRolls;
+}
+
+export const checkScore = (diceRoll) => {
+    let score = 0;
+    for (let i = 0; i < diceRoll.length; i++) {
+        score += diceRoll[i];
+    }
+    return score;
+}
+
+export const diceGame=(diceRolls)=> {
     return;
 };
