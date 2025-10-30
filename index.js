@@ -23,5 +23,9 @@ export const checkScore = (diceRoll) => {
 }
 
 export const diceGame=(diceRolls)=> {
-    return;
+    let totalScore = 0;
+    for (let i = 0; i < diceRolls.length; i++) {
+        totalScore += checkScore(diceRolls[i]);
+    }
+    return totalScore;
 };

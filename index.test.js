@@ -35,4 +35,13 @@ describe('diceGame',()=> {
         const result = checkScore(diceRoll);
         expect(result).toBe(expectedScore);
     });
+    it('should return 61 for [[1,2,3,4,5],[3,5,8,6,4],[3,1,4,7,5]]',()=> {
+        const rolls = [
+            [1, 2, 3, 4, 5],
+            [3, 5, 8, 6, 4],
+            [3, 1, 4, 7, 5]
+        ];
+        const result = diceGame(rolls);
+        expect(result).toBe(61);
+    });
 });
